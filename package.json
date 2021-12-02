@@ -1,0 +1,19 @@
+{
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "description": "Advent of code solutions",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angie/advent-of-code.git"
+  },
+  "author": "Angie Merryweather",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angie/advent-of-code/issues"
+  },
+  "homepage": "https://github.com/angie/advent-of-code#readme"
+}
