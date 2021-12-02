@@ -10,7 +10,7 @@ const parseInput = () => {
   return numbers
 }
 
-const countIncreasingDepths = (data = []) => {
+const countIncreasingDepths = (data = parseInput()) => {
   let count = 0
 
   for (let i = 1; i < data.length; i++) {
@@ -25,4 +25,20 @@ const countIncreasingDepths = (data = []) => {
   return count
 }
 
-module.exports = { countIncreasingDepths }
+const getSlidingWindow = (data = parseInput()) => {
+  let [a, b, ...rest] = data
+  const sums = []
+
+  for (const number of rest) {
+    const c = number
+    const sum = a + b + c
+    sums.push(sum)
+
+    a = b
+    b = c
+  }
+
+  return sums
+}
+
+module.exports = { countIncreasingDepths, getSlidingWindow }
