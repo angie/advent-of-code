@@ -41,9 +41,7 @@ const calcPowerConsumption = (input = parseInput()) => {
   return parseInt(gammaRate, 2) * parseInt(epsilonRate, 2)
 }
 
-const calcOxygenGeneratorRating = (input = parseInput(), position = 0) => {
-  if (input.length === 1) return input
-
+const splitNumbersAndCount = (input, position) => {
   let zeroBit = []
   let oneBit = []
 
@@ -62,33 +60,30 @@ const calcOxygenGeneratorRating = (input = parseInput(), position = 0) => {
     }
   }
 
+  return { countZero, countOne, zeroBit, oneBit }
+}
+
+const calcOxygenGeneratorRating = (input = parseInput(), position = 0) => {
+  if (input.length === 1) return input
+
+  const { countZero, countOne, zeroBit, oneBit } = splitNumbersAndCount(
+    input,
+    position
+  )
+
   if (countOne === countZero || countOne > countZero) {
     return calcOxygenGeneratorRating(oneBit, position + 1)
   }
-
   return calcOxygenGeneratorRating(zeroBit, position + 1)
 }
 
 const calcCo2Rating = (input = parseInput(), position = 0) => {
   if (input.length === 1) return input
 
-  let zeroBit = []
-  let oneBit = []
-
-  let countZero = 0
-  let countOne = 0
-
-  // partition numbers by the bit we're interested in
-  // and keep a total of which bit is encountered the most
-  for (const number of input) {
-    if (number[position] === "0") {
-      countZero++
-      zeroBit.push(number)
-    } else {
-      countOne++
-      oneBit.push(number)
-    }
-  }
+  const { countZero, countOne, zeroBit, oneBit } = splitNumbersAndCount(
+    input,
+    position
+  )
 
   if (countZero === countOne || countZero < countOne) {
     return calcCo2Rating(zeroBit, position + 1)
