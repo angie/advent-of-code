@@ -1,4 +1,4 @@
-const { calcPowerConsumption } = require(".")
+const { calcPowerConsumption, calcLifeSupportRating } = require(".")
 
 const testInput = [
   "00100",
@@ -15,6 +15,10 @@ const testInput = [
   "01010",
 ]
 
-test("should calculate power consumption", () => {
+test("calculates power consumption", () => {
   expect(calcPowerConsumption(testInput)).toEqual(198)
+})
+
+test("calculates life support rating", () => {
+  expect(calcLifeSupportRating(testInput)).toEqual(230)
 })
